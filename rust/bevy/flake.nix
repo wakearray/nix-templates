@@ -21,9 +21,10 @@
           xorg.libXrandr
           alsa-lib
           udev
-          pkgconfig
+          pkg-config
         ];
         nativeBuildInputs = with pkgs; [
+          libxkbcommon
           (rust-bin.selectLatestNightlyWith
             (toolchain: toolchain.default.override {
               extensions = [ "rust-src" "clippy" ];

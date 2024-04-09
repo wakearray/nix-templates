@@ -4,8 +4,8 @@ fn main() {
     App::new()
         .insert_resource(ClearColor(Color::BLACK))
         .add_plugins(DefaultPlugins)
-        .add_startup_system(spawn_scene)
-        .add_system(rotate_scene)
+        .add_systems(Startup, spawn_scene)
+        .add_systems(Update, rotate_scene)
         .run();
 }
 
@@ -42,6 +42,6 @@ fn spawn_scene(mut commands: Commands, assets: Res<AssetServer>) {
 
 fn rotate_scene(mut scene_object: Query<(Entity, &Rotate, &mut Transform)>) {
     for (_, _, mut transform) in &mut scene_object {
-        transform.rotate_y(0.05);
+        transform.rotate_y(0.005);
     }
 }
